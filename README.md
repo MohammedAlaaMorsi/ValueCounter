@@ -58,9 +58,9 @@ Add the following xml to your layout file.
 Reference the View in Java code.
 
 ```java
-       ValueCounter valueCounter= (ValueCounter) findViewById(R.id.valueCounter);
+       ValueCounterView valueCounter= (ValueCounterView) findViewById(R.id.valueCounter);
 ```
-get Value 
+getValue 
 ```java
        valueCounter.getValue();
 ```
