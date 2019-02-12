@@ -65,7 +65,7 @@ get Value
        valueCounter.getValue();
 ```
 
-  ![](/pics/demo_capture.gif)
+  ![](/pics/demo_capture.gif =250x250)
   
   
  ## License
