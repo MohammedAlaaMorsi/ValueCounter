@@ -65,7 +65,7 @@ get Value
        valueCounter.getValue();
 ```
 
-  ![](/pics/demo_capture.gif =250x250)
+  ![](<img src="https://raw.githubusercontent.com/Mohammed-Alaa/ValueCounter/master/pics/demo_capture.gif" width="200" height="400" />)
   
   
  ## License
