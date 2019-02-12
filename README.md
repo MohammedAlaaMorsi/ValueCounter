@@ -58,14 +58,14 @@ Add the following xml to your layout file.
 Reference the View in Java code.
 
 ```java
-       ValueCounter valueColor= (ValueCounter) findViewById(R.id.valueCounter);
+       ValueCounter valueCounter= (ValueCounter) findViewById(R.id.valueCounter);
 ```
 get Value 
 ```java
-       valueColor.getValue();
+       valueCounter.getValue();
 ```
 
-  ![](pics/demo_cupture.gif)
+  ![](/pics/demo_capture.gif)
   
   
  ## License
