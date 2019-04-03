@@ -22,7 +22,10 @@ public class ValueCounterView extends ConstraintLayout {
     private int valueColor = 0;
     String labelText = "";
     int labelColor = 0;
-    int stepValue=0;
+    int stepValue = 0;
+
+    int valueTextSize = 8;
+    int labelTextSize = 8;
 
 
     public ValueCounterView(Context context) {
@@ -56,7 +59,7 @@ public class ValueCounterView extends ConstraintLayout {
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_defaultValue)) {
             defaultValue = typedArray.getInt(R.styleable.ValueCounterView_defaultValue, 1);
-            if(defaultValue<minValue|| defaultValue>maxValue){
+            if (defaultValue < minValue || defaultValue > maxValue) {
                 throw new RuntimeException("defaultValue must be in range ( minValue <= defaultValue <= maxValue)");
             }
         }
@@ -69,30 +72,48 @@ public class ValueCounterView extends ConstraintLayout {
             labelColor = typedArray.getInt(R.styleable.ValueCounterView_labelColor, 1);
         }
 
+        if (typedArray.hasValue(R.styleable.ValueCounterView_valueTextSize)) {
+            valueTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_valueTextSize, 8);
+        }
+
+        if (typedArray.hasValue(R.styleable.ValueCounterView_labelTextSize)) {
+            labelTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_labelTextSize, 8);
+        }
+
         if (typedArray.hasValue(R.styleable.ValueCounterView_labelText)) {
             labelText = typedArray.getString(R.styleable.ValueCounterView_labelText);
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_addButton)) {
-            int drawable = typedArray.getResourceId(R.styleable.ValueCounterView_addButton,1);
+            int drawable = typedArray.getResourceId(R.styleable.ValueCounterView_addButton, 1);
             addButton.setBackgroundResource(drawable);
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_subButton)) {
-            int drawable = typedArray.getResourceId(R.styleable.ValueCounterView_subButton,1);
+            int drawable = typedArray.getResourceId(R.styleable.ValueCounterView_subButton, 1);
             subButton.setBackgroundResource(drawable);
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_stepValue)) {
-           stepValue = typedArray.getInt(R.styleable.ValueCounterView_stepValue,1);
+            stepValue = typedArray.getInt(R.styleable.ValueCounterView_stepValue, 1);
         }
 
         setValue(defaultValue);
         setValueColor(valueColor);
         setLabelText(labelText);
         setLabelColor(labelColor);
+        setValueTextSize(valueTextSize);
+        setLabelTextSize(labelTextSize);
 
         typedArray.recycle();
+    }
+
+    private void setValueTextSize(int valueTextSize) {
+        valueTextView.setTextSize(valueTextSize);
+    }
+
+    private void setLabelTextSize(int labelTextSize) {
+        labelTextView.setTextSize(labelTextSize);
     }
 
     private void setLabelText(String labelText) {

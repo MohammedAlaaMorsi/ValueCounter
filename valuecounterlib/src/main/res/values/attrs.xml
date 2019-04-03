@@ -10,6 +10,9 @@
         <attr name="labelText" format="string"/>
         <attr name="addButton" format="reference" />
         <attr name="subButton" format="reference" />
+        <attr name="valueTextSize" format="dimension" />
+        <attr name="labelTextSize" format="dimension" />
+
     </declare-styleable>
 
 </resources>
