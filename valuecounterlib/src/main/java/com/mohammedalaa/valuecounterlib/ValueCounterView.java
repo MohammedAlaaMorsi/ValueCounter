@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,8 +25,8 @@ public class ValueCounterView extends ConstraintLayout {
     int labelColor = 0;
     int stepValue = 0;
 
-    int valueTextSize = 8;
-    int labelTextSize = 8;
+    int valueTextSize = 12;
+    int labelTextSize = 12;
 
 
     public ValueCounterView(Context context) {
@@ -73,11 +74,11 @@ public class ValueCounterView extends ConstraintLayout {
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_valueTextSize)) {
-            valueTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_valueTextSize, 8);
+            valueTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_valueTextSize, 12);
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_labelTextSize)) {
-            labelTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_labelTextSize, 8);
+            labelTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_labelTextSize, 12);
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_labelText)) {
@@ -109,11 +110,15 @@ public class ValueCounterView extends ConstraintLayout {
     }
 
     private void setValueTextSize(int valueTextSize) {
-        valueTextView.setTextSize(valueTextSize);
+        if (valueTextSize > 0) {
+            valueTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, valueTextSize);
+        }
     }
 
     private void setLabelTextSize(int labelTextSize) {
-        labelTextView.setTextSize(labelTextSize);
+        if (labelTextSize > 0) {
+            labelTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelTextSize);
+        }
     }
 
     private void setLabelText(String labelText) {
