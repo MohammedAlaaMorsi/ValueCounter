@@ -36,6 +36,7 @@ Add the following xml to your layout file.
 <com.mohammedalaa.valuecounterlib.ValueCounterView
         app:valueColor="@color/black"
         app:defaultValue="5"
+        app:valueTextSize="@dimen/value_textSize"
         app:addButton="@drawable/ic_add_24dp"
         app:subButton="@drawable/ic_sub_24dp"
         app:stepValue="1"
@@ -43,6 +44,7 @@ Add the following xml to your layout file.
         app:maxValue="10"
         app:labelColor="@color/colorPrimary"
         app:labelText="EGP"
+        app:labelTextSize="@dimen/label_textSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
