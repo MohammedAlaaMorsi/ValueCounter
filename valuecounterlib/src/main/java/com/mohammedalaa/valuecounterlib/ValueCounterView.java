@@ -2,11 +2,21 @@ package com.mohammedalaa.valuecounterlib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
@@ -14,19 +24,18 @@ public class ValueCounterView extends ConstraintLayout {
 
     View rootView;
     TextView valueTextView;
-    TextView labelTextView;
     ImageView subButton;
     ImageView addButton;
+    View leftSeparator, rightSeparator;
     private int minValue = 0;
     private int maxValue = 0;
     private int defaultValue = 0;
     private int valueColor = 0;
-    String labelText = "";
-    int labelColor = 0;
     int stepValue = 0;
-
+    int outlineColor = 0;
     int valueTextSize = 12;
-    int labelTextSize = 12;
+    int cornerRadius = 2;
+    int strokeWidth = 2;
 
 
     public ValueCounterView(Context context) {
@@ -65,25 +74,28 @@ public class ValueCounterView extends ConstraintLayout {
             }
         }
 
+
         if (typedArray.hasValue(R.styleable.ValueCounterView_valueColor)) {
             valueColor = typedArray.getInt(R.styleable.ValueCounterView_valueColor, 1);
         }
 
-        if (typedArray.hasValue(R.styleable.ValueCounterView_labelColor)) {
-            labelColor = typedArray.getInt(R.styleable.ValueCounterView_labelColor, 1);
+        if (typedArray.hasValue(R.styleable.ValueCounterView_outlineColor)) {
+            outlineColor = typedArray.getInt(R.styleable.ValueCounterView_outlineColor, 1);
         }
+
+        if (typedArray.hasValue(R.styleable.ValueCounterView_cornerRadius)) {
+            cornerRadius = typedArray.getInt(R.styleable.ValueCounterView_cornerRadius, 1);
+        }
+
+        if (typedArray.hasValue(R.styleable.ValueCounterView_strokeWidth)) {
+            strokeWidth = typedArray.getInt(R.styleable.ValueCounterView_strokeWidth, 1);
+        }
+
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_valueTextSize)) {
             valueTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_valueTextSize, 12);
         }
 
-        if (typedArray.hasValue(R.styleable.ValueCounterView_labelTextSize)) {
-            labelTextSize = typedArray.getDimensionPixelSize(R.styleable.ValueCounterView_labelTextSize, 12);
-        }
-
-        if (typedArray.hasValue(R.styleable.ValueCounterView_labelText)) {
-            labelText = typedArray.getString(R.styleable.ValueCounterView_labelText);
-        }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_addButton)) {
             int drawable = typedArray.getResourceId(R.styleable.ValueCounterView_addButton, 1);
@@ -101,12 +113,27 @@ public class ValueCounterView extends ConstraintLayout {
 
         setValue(defaultValue);
         setValueColor(valueColor);
-        setLabelText(labelText);
-        setLabelColor(labelColor);
         setValueTextSize(valueTextSize);
-        setLabelTextSize(labelTextSize);
+        setOutlineColor(outlineColor, cornerRadius,strokeWidth);
 
         typedArray.recycle();
+    }
+
+    private void setOutlineColor(int outlineColor, int cornerRadius, int strokeWidth) {
+        GradientDrawable gd = new GradientDrawable();
+        gd.setCornerRadius(cornerRadius);
+        gd.setStroke(strokeWidth, outlineColor);
+
+        leftSeparator.setBackgroundColor(outlineColor);
+        rightSeparator.setBackgroundColor(outlineColor);
+
+
+        rightSeparator.getLayoutParams().height=0;
+        rightSeparator.getLayoutParams().width=strokeWidth;
+
+        leftSeparator.getLayoutParams().height=0;
+        leftSeparator.getLayoutParams().width=strokeWidth;
+        rootView.setBackgroundDrawable(gd);
     }
 
     private void setValueTextSize(int valueTextSize) {
@@ -115,19 +142,6 @@ public class ValueCounterView extends ConstraintLayout {
         }
     }
 
-    private void setLabelTextSize(int labelTextSize) {
-        if (labelTextSize > 0) {
-            labelTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, labelTextSize);
-        }
-    }
-
-    private void setLabelText(String labelText) {
-        labelTextView.setText(labelText);
-    }
-
-    private void setLabelColor(int labelColor) {
-        labelTextView.setTextColor(labelColor);
-    }
 
     private void setValueColor(int valueColor) {
         valueTextView.setTextColor(valueColor);
@@ -137,10 +151,11 @@ public class ValueCounterView extends ConstraintLayout {
     private void init(Context context) {
         rootView = inflate(context, R.layout.value_counter, this);
         valueTextView = (TextView) rootView.findViewById(R.id.valueTextView);
-        labelTextView = (TextView) rootView.findViewById(R.id.valueLabel);
 
         subButton = rootView.findViewById(R.id.subButton);
         addButton = rootView.findViewById(R.id.addButton);
+        leftSeparator = rootView.findViewById(R.id.separator_left);
+        rightSeparator = rootView.findViewById(R.id.separator_right);
 
         subButton.setOnClickListener(new View.OnClickListener() {
             @Override

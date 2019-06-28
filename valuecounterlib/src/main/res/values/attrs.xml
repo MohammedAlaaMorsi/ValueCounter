@@ -4,14 +4,14 @@
         <attr name="minValue" format="integer" />
         <attr name="maxValue" format="integer" />
         <attr name="stepValue" format="integer" />
-        <attr name="defaultValue" format="integer"/>
+        <attr name="defaultValue" format="integer" />
         <attr name="valueColor" format="color" />
-        <attr name="labelColor" format="color" />
-        <attr name="labelText" format="string"/>
+        <attr name="outlineColor" format="color" />
+        <attr name="cornerRadius" format="integer" />
+        <attr name="strokeWidth" format="integer" />
         <attr name="addButton" format="reference" />
         <attr name="subButton" format="reference" />
         <attr name="valueTextSize" format="dimension" />
-        <attr name="labelTextSize" format="dimension" />
 
     </declare-styleable>
 
