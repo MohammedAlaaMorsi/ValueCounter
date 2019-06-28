@@ -24,7 +24,7 @@ Include the library as a local library project or add the dependency in your bui
 
 ```groovy
 dependencies {
-    implementation 'com.github.Mohammed-Alaa:ValueCounter:1.0.1'
+    implementation 'com.github.Mohammed-Alaa:ValueCounter:1.0.2'
 }
 ```	
 
@@ -33,26 +33,25 @@ dependencies {
 Add the following xml to your layout file.
 
 ```xml
-<com.mohammedalaa.valuecounterlib.ValueCounterView
+  <com.mohammedalaa.valuecounterlib.ValueCounterView
         app:valueColor="@color/black"
         app:defaultValue="5"
         app:valueTextSize="@dimen/value_textSize"
-        app:addButton="@drawable/ic_add_24dp"
-        app:subButton="@drawable/ic_sub_24dp"
+        app:addButton="@drawable/ic_add_black_24dp"
+        app:subButton="@drawable/ic_sub_black_24dp"
         app:stepValue="1"
         app:minValue="1"
         app:maxValue="10"
-        app:labelColor="@color/colorPrimary"
-        app:labelText="EGP"
-        app:labelTextSize="@dimen/label_textSize"
+        app:strokeWidth="3"
+        app:cornerRadius="55"
+        app:outlineColor="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/valueCounter"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </com.mohammedalaa.valuecounterlib.ValueCounterView>
+        android:layout_height="wrap_content"/>
 ```
 
 ### Step 4
@@ -67,7 +66,7 @@ getValue
        valueCounter.getValue();
 ```
 
-  ![](/pics/demo_capture.gif)
+  ![](/pics/record.gif)
   
   
  ## License

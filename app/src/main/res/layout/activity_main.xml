@@ -25,9 +25,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/valueCounter"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </com.mohammedalaa.valuecounterlib.ValueCounterView>
-
+        android:layout_height="wrap_content"/>
     <Button
         android:text="Get Value"
         app:layout_constraintTop_toBottomOf="@id/valueCounter"
