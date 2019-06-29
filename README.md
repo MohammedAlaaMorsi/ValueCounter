@@ -24,7 +24,7 @@ Include the library as a local library project or add the dependency in your bui
 
 ```groovy
 dependencies {
-    implementation 'com.github.Mohammed-Alaa:ValueCounter:1.0.2'
+    implementation 'com.github.Mohammed-Alaa:ValueCounter:1.0.3'
 }
 ```	
 
@@ -33,18 +33,18 @@ dependencies {
 Add the following xml to your layout file.
 
 ```xml
-  <com.mohammedalaa.valuecounterlib.ValueCounterView
+<com.mohammedalaa.valuecounterlib.ValueCounterView
         app:valueColor="@color/black"
         app:defaultValue="5"
         app:valueTextSize="@dimen/value_textSize"
-        app:addButton="@drawable/ic_add_black_24dp"
-        app:subButton="@drawable/ic_sub_black_24dp"
+        app:addButtonColor="@color/colorPrimary"
+        app:subButtonColor="@color/colorPrimary"
         app:stepValue="1"
         app:minValue="1"
         app:maxValue="10"
         app:strokeWidth="3"
         app:cornerRadius="55"
-        app:outlineColor="@color/colorPrimaryDark"
+        app:outlineColor="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

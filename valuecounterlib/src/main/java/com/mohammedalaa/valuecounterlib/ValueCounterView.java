@@ -38,6 +38,7 @@ public class ValueCounterView extends ConstraintLayout {
     int strokeWidth = 2;
 
 
+
     public ValueCounterView(Context context) {
         super(context);
         init(context);
@@ -97,14 +98,15 @@ public class ValueCounterView extends ConstraintLayout {
         }
 
 
-        if (typedArray.hasValue(R.styleable.ValueCounterView_addButton)) {
-            int drawable = typedArray.getResourceId(R.styleable.ValueCounterView_addButton, 1);
-            addButton.setBackgroundResource(drawable);
+        if (typedArray.hasValue(R.styleable.ValueCounterView_addButtonColor)) {
+            int color = typedArray.getInt(R.styleable.ValueCounterView_addButtonColor, 1);
+            DrawableCompat.setTint(addButton.getDrawable(), color);
         }
 
-        if (typedArray.hasValue(R.styleable.ValueCounterView_subButton)) {
-            int drawable = typedArray.getResourceId(R.styleable.ValueCounterView_subButton, 1);
-            subButton.setBackgroundResource(drawable);
+        if (typedArray.hasValue(R.styleable.ValueCounterView_subButtonColor)) {
+            int color = typedArray.getInt(R.styleable.ValueCounterView_subButtonColor, 1);
+            DrawableCompat.setTint(subButton.getDrawable(), color);
+
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_stepValue)) {
@@ -114,12 +116,12 @@ public class ValueCounterView extends ConstraintLayout {
         setValue(defaultValue);
         setValueColor(valueColor);
         setValueTextSize(valueTextSize);
-        setOutlineColor(outlineColor, cornerRadius,strokeWidth);
+        setOutlineColor(outlineColor, cornerRadius,strokeWidth,context);
 
         typedArray.recycle();
     }
 
-    private void setOutlineColor(int outlineColor, int cornerRadius, int strokeWidth) {
+    private void setOutlineColor(int outlineColor, int cornerRadius, int strokeWidth,Context context) {
         GradientDrawable gd = new GradientDrawable();
         gd.setCornerRadius(cornerRadius);
         gd.setStroke(strokeWidth, outlineColor);
@@ -133,6 +135,7 @@ public class ValueCounterView extends ConstraintLayout {
 
         leftSeparator.getLayoutParams().height=0;
         leftSeparator.getLayoutParams().width=strokeWidth;
+
         rootView.setBackgroundDrawable(gd);
     }
 
@@ -173,18 +176,17 @@ public class ValueCounterView extends ConstraintLayout {
     }
 
     private void incrementValue() {
-        int currentVal = getValue();//Integer.valueOf(valueTextView.getText().toString());
+        int currentVal = getValue();
         if (currentVal < maxValue) {
             setValue(currentVal + stepValue);
-            //valueTextView.setText(String.valueOf());
         }
     }
 
     private void decrementValue() {
-        int currentVal = getValue();//Integer.valueOf(valueTextView.getText().toString());
+        int currentVal = getValue();
         if (currentVal > minValue) {
             setValue(currentVal - stepValue);
-            //valueTextView.setText(String.valueOf(currentVal - 1));
+
         }
     }
 
