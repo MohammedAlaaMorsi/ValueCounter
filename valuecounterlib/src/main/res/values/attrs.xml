@@ -7,8 +7,8 @@
         <attr name="defaultValue" format="integer" />
         <attr name="valueColor" format="color" />
         <attr name="outlineColor" format="color" />
-        <attr name="cornerRadius" format="integer" />
-        <attr name="strokeWidth" format="integer" />
+        <attr name="cornerRadius" format="dimension" />
+        <attr name="strokeWidth" format="dimension" />
         <attr name="addButtonColor" format="color" />
         <attr name="subButtonColor" format="color" />
         <attr name="valueTextSize" format="dimension" />

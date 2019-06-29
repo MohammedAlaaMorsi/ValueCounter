@@ -12,6 +12,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,6 @@ public class ValueCounterView extends ConstraintLayout {
     int strokeWidth = 2;
 
 
-
     public ValueCounterView(Context context) {
         super(context);
         init(context);
@@ -60,6 +60,13 @@ public class ValueCounterView extends ConstraintLayout {
         TypedArray typedArray = context.obtainStyledAttributes(
                 attrs,
                 R.styleable.ValueCounterView);
+
+        DisplayMetrics dm = context.getResources().getDisplayMetrics();
+        float displayDensity = dm.density;
+
+        float defaultStrokeWidth = displayDensity * 2f;
+        float defaultCornerRadius = displayDensity * 2f;
+
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_minValue)) {
             minValue = typedArray.getInt(R.styleable.ValueCounterView_minValue, 1);
@@ -85,11 +92,11 @@ public class ValueCounterView extends ConstraintLayout {
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_cornerRadius)) {
-            cornerRadius = typedArray.getInt(R.styleable.ValueCounterView_cornerRadius, 1);
+            cornerRadius = (int) typedArray.getDimension(R.styleable.ValueCounterView_cornerRadius, defaultCornerRadius);
         }
 
         if (typedArray.hasValue(R.styleable.ValueCounterView_strokeWidth)) {
-            strokeWidth = typedArray.getInt(R.styleable.ValueCounterView_strokeWidth, 1);
+            strokeWidth = (int) typedArray.getDimension(R.styleable.ValueCounterView_strokeWidth, defaultStrokeWidth);
         }
 
 
@@ -116,12 +123,12 @@ public class ValueCounterView extends ConstraintLayout {
         setValue(defaultValue);
         setValueColor(valueColor);
         setValueTextSize(valueTextSize);
-        setOutlineColor(outlineColor, cornerRadius,strokeWidth,context);
+        setOutlineColor(outlineColor, cornerRadius, strokeWidth, context);
 
         typedArray.recycle();
     }
 
-    private void setOutlineColor(int outlineColor, int cornerRadius, int strokeWidth,Context context) {
+    private void setOutlineColor(int outlineColor, int cornerRadius, int strokeWidth, Context context) {
         GradientDrawable gd = new GradientDrawable();
         gd.setCornerRadius(cornerRadius);
         gd.setStroke(strokeWidth, outlineColor);
@@ -130,11 +137,11 @@ public class ValueCounterView extends ConstraintLayout {
         rightSeparator.setBackgroundColor(outlineColor);
 
 
-        rightSeparator.getLayoutParams().height=0;
-        rightSeparator.getLayoutParams().width=strokeWidth;
+        rightSeparator.getLayoutParams().height = 0;
+        rightSeparator.getLayoutParams().width = strokeWidth;
 
-        leftSeparator.getLayoutParams().height=0;
-        leftSeparator.getLayoutParams().width=strokeWidth;
+        leftSeparator.getLayoutParams().height = 0;
+        leftSeparator.getLayoutParams().width = strokeWidth;
 
         rootView.setBackgroundDrawable(gd);
     }
